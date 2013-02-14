@@ -17,5 +17,7 @@ namespace EmpireMap.Models
 
         public int? UserId { get; set; }
         public UserProfile User { get; set; }
+
+        public virtual List<Castle> Castles { get; set; }
     }
 }
