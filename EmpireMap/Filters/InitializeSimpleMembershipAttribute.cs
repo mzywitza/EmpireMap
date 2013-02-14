@@ -25,11 +25,11 @@ namespace EmpireMap.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<ApplicationContext>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new ApplicationContext())
                     {
                         if (!context.Database.Exists())
                         {
