@@ -45,9 +45,15 @@ namespace EmpireMap.Migrations
                 WebSecurity.CreateUserAndAccount("Administrator", "withheld",
                     new { ConfirmedBy = "Administrator" });
 
+            if (!Roles.GetRolesForUser("Administrator").Contains("Administrator"))
+                Roles.AddUserToRole("Administrator", "Administrator");
+
             if (!WebSecurity.UserExists("InfamousMonk"))
                 WebSecurity.CreateUserAndAccount("InfamousMonk", "imnotdumb",
                     new { ConfirmedBy = "Administrator" });
+
+            if (!Roles.GetRolesForUser("InfamousMonk").Contains("Benutzer"))
+                Roles.AddUserToRole("InfamousMonk", "Benutzer");
 
             context.Maps.AddOrUpdate(m => m.Name,
                 new Map { Name = "Grün" },
