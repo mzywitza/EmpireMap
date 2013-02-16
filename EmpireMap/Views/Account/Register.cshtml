@@ -1,11 +1,15 @@
 ﻿@model EmpireMap.Models.RegisterModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registrierung";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
+    <h2>Erstelle einen neuen Account.</h2>
+    <p>
+        Bitte melde Dich nach der Registrierung im <a href="http://bravehearts.xobor.de/" target="_blank">Forum</a> oder ingame bei einem General
+        für die Freischaltung. 
+    </p>
 </hgroup>
 
 @using (Html.BeginForm()) {
@@ -13,7 +17,7 @@
     @Html.ValidationSummary()
 
     <fieldset>
-        <legend>Registration Form</legend>
+        <legend>Benutzerdaten</legend>
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)
@@ -28,7 +32,7 @@
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </li>
         </ol>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Registrieren" />
     </fieldset>
 }
 
