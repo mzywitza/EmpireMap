@@ -1,3 +1,71 @@
 ﻿@model ICollection<EmpireMap.Models.Castle>
-<h5>Du hast @Model.Count() Burgen.</h5>
+<div id="castle-list">
+    @if (Model.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>AP</th>
+                    <th>Karte</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var castle in Model)
+                {
+                    <tr>
+                        <td>@castle.Name</td>
+                        <td>@castle.X</td>
+                        <td>@castle.Y</td>
+                        <td>@if (castle.IsAp)
+                            {<text>Ja</text>}</td>
+                        <td>@castle.Map.Name</td>
+                        <td>
+                            @Ajax.ActionLink("Bearbeiten", "Edit", "Castle", new { castle.CastleId }, new AjaxOptions { UpdateTargetId = "castleedit", OnSuccess = "showDialog", HttpMethod="GET" }, new { @class = "castle-edit" })
+                            @Ajax.ActionLink("Löschen", "Delete", "Castle", new { castle.CastleId }, new AjaxOptions { UpdateTargetId = "castleedit", OnSuccess = "showDialog", HttpMethod="GET" }, new { @class = "castle-delete" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Du hast noch keine Burgen angelegt.</p>
+    }
+    <p>
+        <button>Neue Burg anlegen</button></p>
+    <div id="castleedit"></div>
+    <script type="text/javascript">
+        $(function () {
+            $(".castle-edit").button({ icons: { primary: "ui-icon-pencil" }, text: false });
+            $(".castle-delete").button({ icons: { primary: "ui-icon-trash" }, text: false });
+            $("#castleedit").hide();
+        });
+        function showDialog() {
+            $("#castleedit").dialog({
+                autoOpen: true,
+                height: 500,
+                width: 450,
+                modal: true,
+                buttons: {
+                    "Erstellen": function() {
+                     
+                        $( this ).dialog( "close" );
+                    },
+                    "Abbrechen": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+
+        $("a[data-ajax=true]").click(function (evt) { alert("Geht"); });
+    </script>
+
+
+</div>
 

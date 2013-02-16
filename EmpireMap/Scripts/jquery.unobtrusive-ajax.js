@@ -112,7 +112,16 @@
         return !validationInfo || !validationInfo.validate || validationInfo.validate();
     }
 
-    $("a[data-ajax=true]").on("click", function (evt) {
+    //$("a[data-ajax=true]").on("click", function (evt) {
+    //    evt.preventDefault();
+    //    asyncRequest(this, {
+    //        url: this.href,
+    //        type: "GET",
+    //        data: []
+    //    });
+    //});
+
+    $("a[data-ajax=true]").click(function (evt) {
         evt.preventDefault();
         asyncRequest(this, {
             url: this.href,
@@ -120,6 +129,7 @@
             data: []
         });
     });
+
 
     $("form[data-ajax=true] input[type=image]").on("click", function (evt) {
         var name = evt.target.name,

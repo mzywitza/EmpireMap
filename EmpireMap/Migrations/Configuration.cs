@@ -66,7 +66,7 @@ namespace EmpireMap.Migrations
             var monkUserProfile = context.UserProfiles.Where(u => u.UserName == "InfamousMonk").Single();
             
             context.Players.AddOrUpdate(p => p.Name,
-                new Player { Name = "InfamousMonk", AllianceStatus = "Mitglied", User = monkUserProfile });
+                new Player { Name = "InfamousMonk", AllianceStatus = "Member", User = monkUserProfile });
 
             context.SaveChanges();
 

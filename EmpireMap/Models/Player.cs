@@ -13,6 +13,7 @@ namespace EmpireMap.Models
         [Required]
         public string Name { get; set; }
         
+        [Required]
         [Display(Name="Status")]
         public string AllianceStatus { get; set; }
 
