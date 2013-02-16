@@ -1,0 +1,38 @@
+﻿@model EmpireMap.Models.Player
+@if (ViewBag.Message != null)
+{
+    <h5>@ViewBag.Message</h5>
+}
+<div id="playerData">
+    @if (Model.PlayerId == 0)
+    {
+        <h5>Die Daten sind noch nicht gespeichert!</h5>
+    }
+    <fieldset>
+        <legend>@ViewBag.PlayerLegend</legend>
+        @using (Ajax.BeginForm("Edit", "Player", new AjaxOptions { UpdateTargetId = "playerData" }))
+        {
+            @Html.HiddenFor(model => model.PlayerId)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AllianceStatus)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.AllianceStatus, EmpireMap.Models.AllianceStatus.GetSelectList(Model))
+                @Html.ValidationMessageFor(model => model.AllianceStatus)
+            </div>
+
+            <p>
+                <input type="submit" value="Speichern" />
+            </p>
+        }
+    </fieldset>
+</div>

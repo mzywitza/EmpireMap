@@ -1,0 +1,22 @@
+﻿@model EmpireMap.Models.LimitedHeaderModel
+@{Layout = null;}
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Wartesaal.</h1>
+                <h2>Du befindest Dich im eingeschränkten Bereich.</h2>
+            </hgroup>
+            <h5>Hallo @User.Identity.Name.</h5>
+            <p>
+                Du befindest Dich im eingeschränkten Bereich, weil Du noch nicht freigeschaltet wurdest. Falls Du es noch nicht gemacht hast,
+                wende Dich bitte ingame an einen General Deines Wings oder im Forum, damit Du freigeschaltet wirst.
+            </p>
+            <p>Folgende Benutzer können Dich freischalten: </p>
+            <ul>
+                @foreach (var userName in Model.Confirmers)
+                {
+                    <li>@userName</li>
+                }
+            </ul>
+        </div>
+    </section>

@@ -184,7 +184,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LimitedController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,8 +197,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AllianceStatus.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\Castle.cs" />
+    <Compile Include="Models\LimitedHeaderModel.cs" />
+    <Compile Include="Models\LimitedPageModel.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -316,6 +321,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Application\Index.cshtml" />
+    <Content Include="Views\Limited\Limited.cshtml" />
+    <Content Include="Views\Limited\Index.cshtml" />
+    <Content Include="Views\Shared\_PlayerData.cshtml" />
+    <Content Include="Views\Shared\_CastleData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

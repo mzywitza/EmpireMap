@@ -1,0 +1,13 @@
+﻿@model EmpireMap.Models.LimitedPageModel
+@{
+    ViewBag.Title = "Wartesaal";
+}
+@section featured {
+    @Html.Action("Limited")
+}
+<h2>Bitte prüfe Deine Daten</h2>
+@{
+    ViewBag.PlayerLegend = "Deine Ingame-Daten:";
+}
+@Html.Partial("_PlayerData",(EmpireMap.Models.Player) Model.Player)
+@Html.Partial("_CastleData",Model.Castles)
