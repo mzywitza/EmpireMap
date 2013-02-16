@@ -41,7 +41,7 @@ namespace EmpireMap.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "Name oder Passwort sind falsch.");
             return View(model);
         }
 
@@ -372,7 +372,7 @@ namespace EmpireMap.Controllers
             switch (createStatus)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return "User name already exists. Please enter a different user name.";
+                    return "Diesen Namen gibt es schon. Bitte nutze einen anderen Namen";
 
                 case MembershipCreateStatus.DuplicateEmail:
                     return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
@@ -399,7 +399,7 @@ namespace EmpireMap.Controllers
                     return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
                 default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "Irgendwas ist schief gelaufen. Bitte melde Dich ingame bei InfamousMonk.";
             }
         }
         #endregion
