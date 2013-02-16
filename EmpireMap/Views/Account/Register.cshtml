@@ -6,13 +6,13 @@
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
     <h2>Erstelle einen neuen Account.</h2>
-    <p>
-        Bitte melde Dich nach der Registrierung im <a href="http://bravehearts.xobor.de/" target="_blank">Forum</a> oder ingame bei einem General
-        für die Freischaltung. 
-    </p>
 </hgroup>
-
-@using (Html.BeginForm()) {
+<p>
+    Bitte melde Dich nach der Registrierung im <a href="http://bravehearts.xobor.de/" target="_blank">Forum</a> oder ingame bei einem General
+    für die Freischaltung. 
+</p>
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
