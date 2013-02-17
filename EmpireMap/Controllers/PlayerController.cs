@@ -82,5 +82,88 @@ namespace EmpireMap.Controllers
             ViewBag.Castles = ctx.Castles.Where(c => c.PlayerId == model.PlayerId).Include(c => c.Map).ToList();
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult EditCastle(Castle model)
+        {
+            return SaveCastle(model);
+        }
+
+        public ActionResult CreateCastle()
+        {
+            var player = GetCurrentPlayer();
+            if (player == null) return new HttpUnauthorizedResult("Du musst erst Deinen Spieler anlegen");
+            var model = new Castle { PlayerId = player.PlayerId };
+            ViewBag.MapList = ctx.Maps.ToList().Select(m => new SelectListItem { Value = m.MapId.ToString(), Text = m.Name });
+            ViewBag.Castles = ctx.Castles.Where(c => c.PlayerId == player.PlayerId).Include(c => c.Map).ToList();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateCastle(Castle model)
+        {
+            return SaveCastle(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCastle(int id)
+        {
+            var player = GetCurrentPlayer();
+            var castle = ctx.Castles.Find(id);
+            if (!User.IsInRole("Benutzer"))
+            {
+                if (player == null)
+                    return new HttpUnauthorizedResult("Du musst erst Deinen Spieler anlegen");
+                if (castle.PlayerId != player.PlayerId)
+                    return new HttpUnauthorizedResult("Du darfst nur Deinen eigenen Spieler bearbeiten!");
+            }
+
+            ctx.Castles.Remove(castle);
+            ctx.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        private ActionResult SaveCastle(Castle model)
+        {
+            var player = GetCurrentPlayer();
+            if (!User.IsInRole("Benutzer"))
+            {
+                if (player == null)
+                    return new HttpUnauthorizedResult("Du musst erst Deinen Spieler anlegen");
+                if (model.PlayerId != player.PlayerId)
+                    return new HttpUnauthorizedResult("Du darfst nur Deinen eigenen Spieler bearbeiten!");
+            } 
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (model.CastleId > 0)
+                    {
+                        ctx.Entry(model).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        ctx.Castles.Add(model);
+                    }
+                    ctx.SaveChanges();
+                    TempData["Message"] = "Deine Daten wurde gespeichert.";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    TempData["Message"] = "Es ist ein Fehler aufgetreten: " + ex.Message;
+                }
+            }
+            ViewBag.MapList = ctx.Maps.ToList().Select(m => new SelectListItem { Value = m.MapId.ToString(), Text = m.Name, Selected = m.MapId == model.MapId });
+            ViewBag.Castles = ctx.Castles.Where(c => c.PlayerId == player.PlayerId).Include(c => c.Map).ToList();
+            return View(model);
+        }
+
+        private Player GetCurrentPlayer()
+        {
+            return ctx.Players.SingleOrDefault(p => p.UserId == WebSecurity.CurrentUserId);
+        }
+
     }
 }

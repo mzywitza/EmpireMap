@@ -38,13 +38,42 @@
         <p>Du hast noch keine Burgen angelegt.</p>
     }
     <p>
-        @Html.ActionLink("Neue Burg anlegen", "Create", "Castle")
+        @Html.ActionLink("Neue Burg anlegen", "CreateCastle")
     </p>
-    <div id="castleedit"></div>
+    <div id="dlgdelete" title="Burg löschen?">
+        <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span></p>
+    </div>
     <script type="text/javascript">
         $(function () {
             $(".castle-edit").button({ icons: { primary: "ui-icon-pencil" }, text: false });
             $(".castle-delete").button({ icons: { primary: "ui-icon-trash" }, text: false });
+            $("#dlgdelete").hide();
+
+            $("a.castle-delete").click(function(evt) {
+                evt.preventDefault();
+                var url = this.href //$(this).href;
+                var tr = $(this).parents("tr");
+                var name = $(tr).children("td:first").contents()[0].data;
+                $("#dlgdelete").children("p").append("<span id='confmsg'>Die Burg " + name + " wirklich löschen?</span>");
+                $("#dlgdelete").show().dialog({
+                    resizable: false,
+                    modal: true,
+                    buttons: {
+                        "Löschen": function () {
+                            $.post(url, "", function () {
+                                tr.remove();
+                            });
+                            $("#confmsg").remove();
+                            $(this).dialog("close");
+                            
+                        },
+                        "Abbrechen": function () {
+                            $("#confmsg").remove();
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            });
         });
     </script>
 </div>

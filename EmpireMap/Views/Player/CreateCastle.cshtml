@@ -6,6 +6,6 @@
         @Html.Action("Limited")
     }
 }
-<h5>Bearbeite Deine Burg @Model.Name</h5>
+<h5>Lege eine neue Burg an</h5>
 @Html.Partial("_CastleEdit")
 @Html.Partial("_CastleData", (ICollection<EmpireMap.Models.Castle>) ViewBag.Castles)

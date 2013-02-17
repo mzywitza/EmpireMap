@@ -331,6 +331,8 @@
     <Content Include="Views\Player\_PlayerData.cshtml" />
     <Content Include="Views\Player\_CastleData.cshtml" />
     <Content Include="Views\Player\EditCastle.cshtml" />
+    <Content Include="Views\Player\_CastleEdit.cshtml" />
+    <Content Include="Views\Player\CreateCastle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
