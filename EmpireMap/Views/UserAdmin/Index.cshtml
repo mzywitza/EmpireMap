@@ -1,8 +1,38 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model List<EmpireMap.Models.UserAdminIndexModel>
+@{
+    ViewBag.Title = "Benutzerverwaltung";
 }
 @section featured 
 {
     @Html.Action("UnconfirmedUsers")
 }
-<h2>Index</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Ingame-Name</th>
+            <th>Anmeldename</th>
+            <th colspan="2">Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.PlayerName</td>
+                <td>@user.UserName</td>
+                <td>
+                    @if (user.Leadership)
+                    {
+                        <text>ja</text>
+                    }
+                </td>
+                <td>@Html.ActionLink("Bearbeiten","EditUser", "UserAdmin", new { id = user.UserId }, new { @class = "pencil" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(function () {
+        $(".pencil").button({ icons: { primary: "ui-icon-pencil" }, text: false });
+    });
+</script>

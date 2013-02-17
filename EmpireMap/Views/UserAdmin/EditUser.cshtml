@@ -1,0 +1,24 @@
+﻿@model EmpireMap.Models.UserAdminIndexModel
+
+@{
+    ViewBag.Title = "Benutzer verwalten";
+}
+
+<h2>Berechtigungen ändern</h2>
+@using (Html.BeginForm())
+{
+    <div class="display-label">@Html.LabelFor(model=>model.PlayerName)</div>
+    <div class="display-field">@Html.DisplayFor(model=>model.PlayerName)</div>
+    <div class="display-label">@Html.LabelFor(model=>model.UserName)</div>
+    <div class="display-field">@Html.DisplayFor(model=>model.UserName)</div>
+    <div class="input-field">
+        @Html.LabelFor(model=>model.Leadership)
+        @Html.CheckBoxFor(model=>model.Leadership)
+    </div>    
+    <input type="submit" value="Speichern" />
+}
+<h2>Benutzer löschen</h2>
+@using (Html.BeginForm("DeleteUser", "UserAdmin", new { id = Model.UserId }))
+{
+    <input type="submit" value="Benutzer löschen" />
+}

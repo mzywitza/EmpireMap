@@ -1,5 +1,4 @@
-﻿using EmpireMap.Filters;
-using EmpireMap.Models;
+﻿using EmpireMap.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +12,6 @@ using WebMatrix.WebData;
 namespace EmpireMap.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class PlayerController : Controller
     {
         private ApplicationContext ctx = new ApplicationContext();
