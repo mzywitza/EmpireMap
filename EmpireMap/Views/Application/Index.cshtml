@@ -1,5 +1,89 @@
-﻿@{
+﻿@model EmpireMap.Models.MapCastleModel
+@{
     ViewBag.Title = "Kartensammlung";
 }
 
-<h2>Hallo Leute</h2>
+<div id="mapselector">
+    @foreach (var map in Model.Maps)
+    {
+        @Html.ActionLink(map.Name, "Index",new {id=map.MapId})
+    }
+</div>
+<h2>Karte @Model.Maps.Single(m=>m.MapId == Model.Id).Name</h2>
+<div id="tabs">
+    <ul>
+        <li><a href="#map">Karte</a></li>
+        <li><a href="#grid">Tabelle</a></li>
+    </ul>
+    <div id="map">
+        <h5>Kommt noch</h5>
+        <p style="font-size:xx-small">Irgendwann... ;-)</p>
+    </div>
+    <div id="grid">
+        <div id="selectedCastle"><h5>Klicke auf eine Zeile um die Entfernung zu berechnen...</h5></div>
+        <table id="gtable">
+            <thead>
+                <tr>
+                    <th>Spieler</th>
+                    <th>Burg</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>AP</th>
+                    <th>Entfernung</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model.Castles)
+                {
+                    <tr>
+                    <td>@c.Player.Name</td>
+                    <td>@c.Name</td>
+                    <td>@c.X</td>
+                    <td>@c.Y</td>
+                    <td>@(c.IsAp ? "Ja" : "")</td>
+                        <td class="distance"></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+
+        var oTable;
+        $("#gtable tbody tr").click(function (e) {
+            oTable.$("tr.row_selected").removeClass("row_selected");
+            $(this).addClass("row_selected");
+
+            var player = $(this).children("td:nth-child(1)").text();
+            var castle = $(this).children("td:nth-child(2)").text();
+            var x = $(this).children("td:nth-child(3)").text();
+            var y = $(this).children("td:nth-child(4)").text();
+            $("#selectedCastle").html("<h5>Entfernungen zu " + castle + " (" + player + ") " + x + "/" + y + "</h5>");
+
+            var cx = parseInt(x, 10);
+            var cy = parseInt(y, 10);
+            $("#gtable tbody tr").each(function (i, elmt) {
+                var x = $(this).children("td:nth-child(3)").text();
+                var y = $(this).children("td:nth-child(4)").text();
+                
+                var dist = Math.ceil(Math.sqrt((cx - x) * (cx - x) + (cy - y) * (cy - y)));
+                var pos = oTable.fnGetPosition(this);
+                oTable.fnUpdate(dist, pos, 5);
+            });
+        });
+
+        oTable = $("#gtable").dataTable({
+            "bJQueryUI": true,
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            oLanguage : {
+                sSearch: "Suche:"
+            }
+        });
+    });
+</script>
