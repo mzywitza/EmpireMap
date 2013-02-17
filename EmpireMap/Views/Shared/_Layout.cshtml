@@ -25,6 +25,14 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Startseite", "Index", "Home")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Verwaltung","Index","Player")</li>
+                            }
+                            @if (User.IsInRole("Benutzer"))
+                            {
+                                <li>@Html.ActionLink("Karten","Index","Application")</li>
+                            }
                             <li>@Html.ActionLink("Info", "About", "Home")</li>
                             <li>@Html.ActionLink("Impressum", "Contact", "Home")</li>
                         </ul>
