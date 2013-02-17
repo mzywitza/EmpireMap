@@ -39,7 +39,7 @@ namespace EmpireMap.Controllers
         {
             var confirmers = new List<string>();
             confirmers.AddRange(Roles.FindUsersInRole("Administrator", "%"));
-            confirmers.AddRange(Roles.FindUsersInRole("Führung", "%"));
+            confirmers.AddRange(Roles.FindUsersInRole("Führung", "%").Where(u=>!confirmers.Contains(u)));
             var model = new LimitedHeaderModel { Confirmers = confirmers };
             return View(model);
         }

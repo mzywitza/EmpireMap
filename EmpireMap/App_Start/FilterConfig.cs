@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using EmpireMap.Filters;
 
 namespace EmpireMap
 {
@@ -8,6 +9,7 @@ namespace EmpireMap
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new InitializeSimpleMembershipAttribute());
         }
     }
 }

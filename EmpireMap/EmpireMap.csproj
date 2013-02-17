@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -209,6 +210,7 @@
     <Compile Include="Models\PlayerIndexModel.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\UnconfirmedUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +338,9 @@
     <Content Include="Views\Player\EditCastle.cshtml" />
     <Content Include="Views\Player\_CastleEdit.cshtml" />
     <Content Include="Views\Player\CreateCastle.cshtml" />
+    <Content Include="Views\UserAdmin\Link.cshtml" />
+    <Content Include="Views\UserAdmin\UnconfirmedUsers.cshtml" />
+    <Content Include="Views\UserAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

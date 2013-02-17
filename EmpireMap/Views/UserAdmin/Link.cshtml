@@ -1,0 +1,9 @@
+﻿@model int
+@if (Model > 0)
+{
+    @Html.ActionLink(string.Format("Benutzerverwaltung ({0})",Model),"Index","UserAdmin")
+}
+else
+{
+    @Html.ActionLink("Benutzerverwaltung","Index","UserAdmin")
+}
