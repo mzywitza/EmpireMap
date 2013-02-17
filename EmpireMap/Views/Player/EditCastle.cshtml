@@ -1,5 +1,12 @@
 ﻿@model EmpireMap.Models.Castle
 
+@if (!User.IsInRole("Benutzer"))
+{
+    @section featured {
+        @Html.Action("Limited")
+    }
+}
+<h5>Bearbeite Deine Burg @Model.Name</h5>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
@@ -46,16 +53,14 @@
             @Html.LabelFor(model => model.MapId)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.MapId)
+            @Html.DropDownListFor(model => model.MapId, (IEnumerable<SelectListItem>)ViewBag.MapList)
             @Html.ValidationMessageFor(model => model.MapId)
         </div>
 
         <p>
             <input type="submit" value="Speichern" />
-            <button id="cancel-edit">Abbrechen</button>
         </p>
+        <p>@Html.ActionLink("Abbrechen","Index")</p>
     </fieldset>
 }
-<script type="text/javascript">
-    $("#cancel-edit").click(function () { $("castle-edit").dialog("close") });
-</script>
+@Html.Partial("_CastleData", (ICollection<EmpireMap.Models.Castle>) ViewBag.Castles)

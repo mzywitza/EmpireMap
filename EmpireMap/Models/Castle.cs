@@ -14,7 +14,11 @@ namespace EmpireMap.Models
         
         [Required]
         public string Name { get; set; }
+        
+        [Display(Name="AP oder Resourcendorf")]
         public bool IsAp { get; set; }
+        
+        [Display(Name="Karte")]
         public int MapId { get; set; }
         public Map Map { get; set; }
         public int PlayerId { get; set; }

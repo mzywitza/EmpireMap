@@ -19,7 +19,7 @@ namespace EmpireMap.Controllers
         public ActionResult Index()
         {
             if (!User.IsInRole("Benutzer"))
-                return RedirectToAction("Index","Limited");
+                return RedirectToAction("Index","Player");
             return View();
         }
     }

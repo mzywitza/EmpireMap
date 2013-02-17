@@ -9,7 +9,7 @@
         <h5>Die Daten sind noch nicht gespeichert!</h5>
     }
     <h5>@ViewBag.PlayerLegend</h5>
-    @using (Ajax.BeginForm("Edit", "Player", new AjaxOptions { UpdateTargetId = "playerData" }))
+    @using (Html.BeginForm("Edit", "Player"))
     {
         @Html.HiddenFor(model => model.PlayerId)
         @Html.HiddenFor(model => model.UserId)

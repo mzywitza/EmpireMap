@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EmpireMap.Models
 {
-    public class LimitedPageModel
+    public class PlayerIndexModel
     {
         public Player Player { get; set; }
         public List<Castle> Castles { get; set; }

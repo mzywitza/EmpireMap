@@ -1,0 +1,23 @@
+﻿@model EmpireMap.Models.PlayerIndexModel
+@{
+    ViewBag.Title = "Wartesaal";
+}
+@if (!User.IsInRole("Benutzer"))
+{
+    @section featured {
+        @Html.Action("Limited")
+    }
+}
+@if (Model.Player.PlayerId == 0 && ViewBag.Message == null)
+{
+    ViewBag.Message ="Für die Freischaltung musst Du Deine Ingame-Daten unten angeben.";
+}
+<h2>Bitte prüfe Deine Daten</h2>
+@{
+    ViewBag.PlayerLegend = "Deine Ingame-Daten:";
+}
+@Html.Partial("_PlayerData",Model.Player)
+@if (Model.Player.PlayerId != 0)
+{
+    @Html.Partial("_CastleData",Model.Castles)
+}

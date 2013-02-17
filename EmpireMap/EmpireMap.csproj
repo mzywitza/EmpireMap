@@ -186,9 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\CastleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LimitedController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -198,13 +196,17 @@
     <Compile Include="Migrations\201302142118489_InitialMigration.Designer.cs">
       <DependentUpon>201302142118489_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201302170000096_PlayerModification.cs" />
+    <Compile Include="Migrations\201302170000096_PlayerModification.Designer.cs">
+      <DependentUpon>201302170000096_PlayerModification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AllianceStatus.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\Castle.cs" />
     <Compile Include="Models\LimitedHeaderModel.cs" />
-    <Compile Include="Models\LimitedPageModel.cs" />
+    <Compile Include="Models\PlayerIndexModel.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -324,11 +326,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Application\Index.cshtml" />
-    <Content Include="Views\Limited\Limited.cshtml" />
-    <Content Include="Views\Limited\Index.cshtml" />
-    <Content Include="Views\Shared\_PlayerData.cshtml" />
-    <Content Include="Views\Shared\_CastleData.cshtml" />
-    <Content Include="Views\Castle\Edit.cshtml" />
+    <Content Include="Views\Player\Limited.cshtml" />
+    <Content Include="Views\Player\Index.cshtml" />
+    <Content Include="Views\Player\_PlayerData.cshtml" />
+    <Content Include="Views\Player\_CastleData.cshtml" />
+    <Content Include="Views\Player\EditCastle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,6 +341,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201302142118489_InitialMigration.resx">
       <DependentUpon>201302142118489_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201302170000096_PlayerModification.resx">
+      <DependentUpon>201302170000096_PlayerModification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
