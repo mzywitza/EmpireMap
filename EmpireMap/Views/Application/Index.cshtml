@@ -16,8 +16,6 @@
         <li><a href="#grid">Tabelle</a></li>
     </ul>
     <div id="map">
-        <h5>Kommt noch</h5>
-        <p style="font-size:xx-small">Irgendwann... ;-)</p>
     </div>
     <div id="grid">
         <div id="selectedCastle"><h5>Klicke auf eine Zeile um die Entfernung zu berechnen...</h5></div>
@@ -40,7 +38,7 @@
                     <td>@c.Name</td>
                     <td>@c.X</td>
                     <td>@c.Y</td>
-                    <td>@(c.IsAp ? "Ja" : "")</td>
+                    <td>@(c.IsAp ? "AP" : "HB")</td>
                         <td class="distance"></td>
                     </tr>
                 }
@@ -85,5 +83,49 @@
                 sSearch: "Suche:"
             }
         });
+    });
+
+    // Karte
+    $(function () {
+        var data = [];
+        $("#gtable tbody tr").each(function (index, element) {
+            var player = $(element).children("td:nth-child(1)").text();
+            var castle = $(element).children("td:nth-child(2)").text();
+            var x = parseInt($(element).children("td:nth-child(3)").text());
+            var y = parseInt($(element).children("td:nth-child(4)").text());
+            var ap = $(element).children("td:nth-child(5)").text();
+            
+            data.push({ caption: player + " (" + ap + ":" + castle + ")", x: x, y: y });
+        });
+        //data.each(function (i, e) { console.log(e.caption) });
+        var minX = d3.min(data, function (e) { return e.x; })-5,
+            minY = d3.min(data, function (e) { return e.y; })-5,
+            maxX = d3.max(data, function (e) { return e.x; })+5,
+            maxY = d3.max(data, function (e) { return e.y; })+5;
+
+        
+        console.log("x: " + minX + "," + maxX + " y: " + minY + "," + maxY);
+
+        var w = 900,
+            h = 700;
+        var karte = d3.select("#map").append("svg:svg").attr("width", w).attr("height", h);
+
+        var x = d3.scale.linear().domain([minX, maxX]).range([0, w]);
+        var y = d3.scale.linear().domain([minY, maxY]).range([0, h]);
+
+        var grp = karte.selectAll(".group-castle").data(data).enter()
+            .append("svg:g")
+            .attr("transform", function (d) { return "translate("+x(d.x)+","+y(d.y)+")"; })
+            .attr("class", function () { return "group-castle"; });
+
+        grp.append("svg:circle")
+            .attr("r", function () { return 4; });
+
+        grp.append("svg:text")
+            .attr("text-anchor", "end")
+            .attr("dy", -4)
+            .attr("dx", -6)
+            .text(function (d) { return d.caption; });
+
     });
 </script>
