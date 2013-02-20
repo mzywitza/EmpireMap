@@ -23,7 +23,7 @@ namespace EmpireMap
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-            MemberShipInitializer.Initialize();
+            EntityInitializer.Initialize();
         }
     }
 }

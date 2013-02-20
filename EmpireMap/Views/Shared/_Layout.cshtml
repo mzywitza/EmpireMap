@@ -38,7 +38,7 @@
                         {
                             <li>@Html.ActionLink("Verwaltung", "Index", "Player")</li>
                         }
-                        @if (User.IsInRole("Admin") || User.IsInRole("Führung"))
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Führung"))
                         {
                             <li>@Html.Action("Link", "UserAdmin")</li>
                         }
