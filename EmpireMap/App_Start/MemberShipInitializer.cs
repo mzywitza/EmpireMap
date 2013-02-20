@@ -1,4 +1,5 @@
-﻿using EmpireMap.Models;
+﻿using EmpireMap.Migrations;
+using EmpireMap.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -27,6 +28,7 @@ namespace EmpireMap
                 }
 
                 WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationContext, Configuration>());
             }
             catch (Exception ex)
             {

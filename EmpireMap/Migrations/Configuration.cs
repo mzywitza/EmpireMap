@@ -29,12 +29,13 @@ namespace EmpireMap.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            WebSecurity.InitializeDatabaseConnection(
-                "DefaultConnection",
-                "UserProfile",
-                "UserId",
-                "UserName",
-                autoCreateTables: true);
+            if (!WebSecurity.Initialized)
+                WebSecurity.InitializeDatabaseConnection(
+                    "DefaultConnection",
+                    "UserProfile",
+                    "UserId",
+                    "UserName",
+                    autoCreateTables: true);
 
             var roles = new string[] { "Administrator", "Führung", "Benutzer" };
 
