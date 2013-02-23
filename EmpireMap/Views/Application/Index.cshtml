@@ -9,13 +9,15 @@
         @Html.ActionLink(map.Name, "Index",new {id=map.MapId})
     }
 </div>
-<h2>Karte @Model.Maps.Single(m=>m.MapId == Model.Id).Name</h2>
+<h2 id="kartenname">Karte @Model.MapName</h2>
 <div id="tabs">
     <ul>
         <li><a href="#map">Karte</a></li>
         <li><a href="#grid">Tabelle</a></li>
     </ul>
     <div id="map">
+        <div id="mapinfo" style="width: 90%;text-align: center;">Keine Burg ausgewählt...</div>
+        <div id="mapcontainer" style="width:90%;min-height:600px;height:100%;"></div>
     </div>
     <div id="grid">
         <div id="selectedCastle"><h5>Klicke auf eine Zeile um die Entfernung zu berechnen...</h5></div>
@@ -103,37 +105,51 @@
             var y = parseInt($(element).children("td:nth-child(4)").text());
             var ap = $(element).children("td:nth-child(5)").text();
             
-            data.push({ caption: player + " (" + ap + ":" + castle + ")", x: x, y: y });
+            data.push({
+                caption: player + " (" + ap + ":" + castle + ")",
+                x: x, y: y, ap: (ap === "AP"),
+                player: player, castle: castle
+            });
         });
-        //data.each(function (i, e) { console.log(e.caption) });
-        var minX = d3.min(data, function (e) { return e.x; })-5,
-            minY = d3.min(data, function (e) { return e.y; })-5,
-            maxX = d3.max(data, function (e) { return e.x; })+5,
-            maxY = d3.max(data, function (e) { return e.y; })+5;
 
+        var hoverDefault = $("#mapinfo").text();
+        new D3Map("mapcontainer", {
+            xmax: d3.max(data, function (e) { return e.x; }) + 5,
+            xmin: d3.min(data, function (e) { return e.x; }) - 5,
+            ymax: d3.max(data, function (e) { return e.y; }) + 5,
+            ymin: d3.min(data, function (e) { return e.y; }) - 5,
+            title: $("#kartenname").text(),
+            mouseover: function (point) {$("#mapinfo").text(point.caption+" ["+point.x+"/"+point.y+"]");},
+            mouseout: function (point) {$("#mapinfo").text(hoverDefault);}
+        }, data);
+
+        //var minX = d3.min(data, function (e) { return e.x; })-5,
+        //    minY = d3.min(data, function (e) { return e.y; })-5,
+        //    maxX = d3.max(data, function (e) { return e.x; })+5,
+        //    maxY = d3.max(data, function (e) { return e.y; })+5;
+
+        //console.log("x: " + minX + "," + maxX + " y: " + minY + "," + maxY);
+
+        //var w = 900,
+        //    h = 700;
+        //var karte = d3.select("#map").append("svg:svg").attr("width", w).attr("height", h);
+
+        //var x = d3.scale.linear().domain([minX, maxX]).range([0, w]);
+        //var y = d3.scale.linear().domain([minY, maxY]).range([0, h]);
+
+        //var grp = karte.selectAll(".group-castle").data(data).enter()
+        //    .append("svg:g")
+        //    .attr("transform", function (d) { return "translate("+x(d.x)+","+y(d.y)+")"; })
+        //    .attr("class", function () { return "group-castle"; });
+
+        //grp.append("svg:circle")
+        //    .attr("r", function () { return 4; });
+
+        //grp.append("svg:text")
+        //    .attr("text-anchor", "end")
+        //    .attr("dy", -4)
+        //    .attr("dx", -6)
+        //    .text(function (d) { return d.caption; });
         
-        console.log("x: " + minX + "," + maxX + " y: " + minY + "," + maxY);
-
-        var w = 900,
-            h = 700;
-        var karte = d3.select("#map").append("svg:svg").attr("width", w).attr("height", h);
-
-        var x = d3.scale.linear().domain([minX, maxX]).range([0, w]);
-        var y = d3.scale.linear().domain([minY, maxY]).range([0, h]);
-
-        var grp = karte.selectAll(".group-castle").data(data).enter()
-            .append("svg:g")
-            .attr("transform", function (d) { return "translate("+x(d.x)+","+y(d.y)+")"; })
-            .attr("class", function () { return "group-castle"; });
-
-        grp.append("svg:circle")
-            .attr("r", function () { return 4; });
-
-        grp.append("svg:text")
-            .attr("text-anchor", "end")
-            .attr("dy", -4)
-            .attr("dx", -6)
-            .text(function (d) { return d.caption; });
-
-    });
+     });
 </script>
