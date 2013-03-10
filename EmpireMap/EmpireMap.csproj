@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201302170000096_PlayerModification.Designer.cs">
       <DependentUpon>201302170000096_PlayerModification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303101109062_TroupsAdded.cs" />
+    <Compile Include="Migrations\201303101109062_TroupsAdded.Designer.cs">
+      <DependentUpon>201303101109062_TroupsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AllianceStatus.cs" />
@@ -495,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201302170000096_PlayerModification.resx">
       <DependentUpon>201302170000096_PlayerModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303101109062_TroupsAdded.resx">
+      <DependentUpon>201303101109062_TroupsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
