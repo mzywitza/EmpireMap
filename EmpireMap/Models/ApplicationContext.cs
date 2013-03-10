@@ -16,5 +16,6 @@ namespace EmpireMap.Models
         public DbSet<Player> Players { get; set; }
         public DbSet<Map> Maps { get; set; }
         public DbSet<Castle> Castles { get; set; }
+        public DbSet<Troup> Troups { get; set; }
     }
 }
