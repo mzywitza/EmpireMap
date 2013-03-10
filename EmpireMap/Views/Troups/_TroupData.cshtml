@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EmpireMap.Models.Troup>
+<div id="trouplist">
+    @if (Model.Any())
+    {
+        <h3>Deine Truppen</h3>
+        <table>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th colspan="5">@item.Map.Name <span style="float:right;">Stand: @item.LastUpdated</span></th>
+                </tr>
+                <tr>
+                    <td>Leichte Deffer</td>
+                    <td>@item.Deff</td>
+                    <td>Leichte Offer</td>
+                    <td>@item.Off</td>
+                    <td rowspan="2" style="vertical-align:middle;">@Html.ActionLink("Bearbeiten", "Edit", new { Id = item.TroupId }, new { @class = "troup-edit" })</td>
+                </tr>
+                <tr>
+                    <td>Schwere Deffer</td>
+                    <td>@item.Deff</td>
+                    <td>Schwere Offer</td>
+                    <td>@item.Off</td>
+                </tr>
+           
+            }
+        </table>
+    }
+    else
+    {
+        <h5>Du hast noch keine Truppen eingetragen</h5>   
+    }
+    <script type="text/javascript">
+        $(function () {
+            $(".troup-edit").button({ icons: { primary: "ui-icon-pencil" }, text: false });
+        });
+    </script>
+</div>

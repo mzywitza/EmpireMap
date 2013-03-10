@@ -492,6 +492,8 @@
     <Content Include="Views\UserAdmin\Index.cshtml" />
     <Content Include="Views\UserAdmin\EditUser.cshtml" />
     <Content Include="Views\Troups\Index.cshtml" />
+    <Content Include="Views\Troups\_TroupData.cshtml" />
+    <Content Include="Views\Troups\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

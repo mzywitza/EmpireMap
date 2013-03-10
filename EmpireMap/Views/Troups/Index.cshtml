@@ -4,4 +4,22 @@
     ViewBag.Title = "Truppen";
 }
 
+@Html.Partial("_TroupData", Model.Troups)
 
+@{
+    var noTroups = Model.Maps.Where(m=>!Model.Troups.Any(t=>t.MapId ==m.MapId));
+}
+
+@if (noTroups.Any())
+{
+    <h3>Truppen hinzufügen</h3>
+    using (Html.BeginForm("AddTroups","Troups"))
+    {
+    <div class="editor-field">
+        @Html.DropDownList("mapId", noTroups.Select(m => new SelectListItem { Text = m.Name, Value = m.MapId.ToString() }))
+    </div>
+    <div>
+        <input type="submit" value="Hinzufügen"/>
+    </div>    
+    }
+}

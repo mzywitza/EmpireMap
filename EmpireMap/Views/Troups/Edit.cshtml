@@ -1,0 +1,9 @@
+﻿@model EmpireMap.Models.Troup
+
+@{
+    ViewBag.Title = "Truppen im "+Model.Map.Name+" bearbeiten";
+    EmpireMap.Models.TroupIndexModel indexModel = ViewBag.IndexModel;
+}
+
+
+@Html.Partial("_TroupData", indexModel.Troups)
