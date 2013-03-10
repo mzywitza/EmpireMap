@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\TroupsController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,6 +206,10 @@
     <Compile Include="Migrations\201303101109062_TroupsAdded.Designer.cs">
       <DependentUpon>201303101109062_TroupsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303101829342_TroupsChanged.cs" />
+    <Compile Include="Migrations\201303101829342_TroupsChanged.Designer.cs">
+      <DependentUpon>201303101829342_TroupsChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AllianceStatus.cs" />
@@ -216,6 +221,7 @@
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Troup.cs" />
+    <Compile Include="Models\TroupIndexModel.cs" />
     <Compile Include="Models\UnconfirmedUserModel.cs" />
     <Compile Include="Models\UserAdminIndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -485,6 +491,7 @@
     <Content Include="Views\UserAdmin\UnconfirmedUsers.cshtml" />
     <Content Include="Views\UserAdmin\Index.cshtml" />
     <Content Include="Views\UserAdmin\EditUser.cshtml" />
+    <Content Include="Views\Troups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -502,6 +509,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303101109062_TroupsAdded.resx">
       <DependentUpon>201303101109062_TroupsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303101829342_TroupsChanged.resx">
+      <DependentUpon>201303101829342_TroupsChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -30,6 +30,7 @@
                         @if (User.IsInRole("Benutzer"))
                         {
                             <li>@Html.ActionLink("Karten", "Index", "Application")</li>
+                            <li>@Html.ActionLink("Truppen", "Index", "Troups")</li>
                         }
                         else
                         {

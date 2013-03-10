@@ -17,11 +17,20 @@ namespace EmpireMap.Models
         public Map Map { get; set; }
         
         [Required]
-        [Range(1,int.MaxValue)]
-        public int TroupCount { get; set; }
+        [Range(0,int.MaxValue)]
+        public int Deff { get; set; }
 
-        public bool IsDeff { get; set; }
-        public bool IsVeteran { get; set; }
+        [Required]
+        [Range(0, int.MaxValue)]
+        public int EnhancedDeff { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue)]
+        public int Off { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue)]
+        public int EnhancedOff { get; set; }
 
         public DateTime LastUpdated { get; set; }
     }
