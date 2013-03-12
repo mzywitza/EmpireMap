@@ -5,5 +5,55 @@
     EmpireMap.Models.TroupIndexModel indexModel = ViewBag.IndexModel;
 }
 
+<h3>@ViewBag.Title</h3>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Castle</legend>
+
+        @Html.HiddenFor(model => model.TroupId)
+        @Html.HiddenFor(model => model.PlayerId)
+        @Html.HiddenFor(model => model.MapId)
+
+        <div class="editor-label">
+            Leichte Verteidiger (weniger als 4 Nahrungsverbrauch)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Deff)
+            @Html.ValidationMessageFor(model => model.Deff)
+        </div>
+
+        <div class="editor-label">
+            Schwere Verteidiger (4 und mehr Nahrungsverbrauch)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnhancedDeff)
+            @Html.ValidationMessageFor(model => model.EnhancedDeff)
+        </div>
+
+        <div class="editor-label">
+            Leichte Angreifer (weniger als 4 Nahrungsverbrauch)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Off)
+            @Html.ValidationMessageFor(model => model.Off)
+        </div>
+
+        <div class="editor-label">
+            Schwere Angreifer (4 und mehr Nahrungsverbrauch)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnhancedOff)
+            @Html.ValidationMessageFor(model => model.EnhancedOff)
+        </div>
+
+        <p>
+            <input type="submit" value="Speichern" />
+        </p>
+        <p>@Html.ActionLink("Abbrechen","Index")</p>
+    </fieldset>
+}
 
 @Html.Partial("_TroupData", indexModel.Troups)

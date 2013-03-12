@@ -43,6 +43,7 @@
                         @if (User.IsInRole("Administrator") || User.IsInRole("Führung"))
                         {
                             <li>@Html.Action("Link", "UserAdmin")</li>
+                            <li>@Html.ActionLink("Truppenliste", "TroupList","Troups")</li>
                         }
                         <li>@Html.ActionLink("Info", "About", "Home")</li>
                         <li>@Html.ActionLink("Impressum", "Contact", "Home")</li>

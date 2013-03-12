@@ -17,19 +17,23 @@ namespace EmpireMap.Models
         public Map Map { get; set; }
         
         [Required]
-        [Range(0,int.MaxValue)]
+        [Range(0,999999)]
+        [Display(Name = "Leichte Verteidiger")]
         public int Deff { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
+        [Range(0, 999999)]
+        [Display(Name = "Schwere Verteidiger")]
         public int EnhancedDeff { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
+        [Range(0, 999999)]
+        [Display(Name = "Leichte Angreifer")]
         public int Off { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
+        [Range(0, 999999)]
+        [Display(Name = "Schwere Angreifer")]
         public int EnhancedOff { get; set; }
 
         public DateTime LastUpdated { get; set; }

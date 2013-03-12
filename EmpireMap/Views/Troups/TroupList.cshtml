@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EmpireMap.Models.Troup>
+
+@{
+    ViewBag.Title = "Truppenübersicht";
+}
+<h3>@ViewBag.Title</h3>
+
+    <div id="grid">
+        <table id="gtable">
+            <thead>
+                <tr>
+                    <th>Welt</th>
+                    <th>Spieler</th>
+                    <th>Deff</th>
+                    <th>S. Deff</th>
+                    <th>Off</th>
+                    <th>S. Off</th>
+                    <th>Stand</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                    <td>@c.Map.Name</td>
+                    <td>@c.Player.Name</td>
+                    <td>@c.Deff</td>
+                    <td>@c.EnhancedDeff</td>
+                    <td>@c.Off</td>
+                    <td>@c.EnhancedOff</td>
+                    <td>@c.LastUpdated</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+<div>@Html.ActionLink("Download","CsvList")</div>
+
+<script type="text/javascript">
+    $(function () {
+        oTable = $("#gtable").dataTable({
+            "bJQueryUI": true,
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            oLanguage: {
+                sSearch: "Suche:"
+            },
+            "aoColumns": [
+                  null,
+                  null,
+                  { "sSortDataType": "dom-text", "sType": "numeric" },
+                  { "sSortDataType": "dom-text", "sType": "numeric" },
+                  { "sSortDataType": "dom-text", "sType": "numeric" },
+                  { "sSortDataType": "dom-text", "sType": "numeric" },
+                  { "sSortDataType": "dom-text", "sType": "date" }
+
+            ]
+        });
+
+    });
+</script>

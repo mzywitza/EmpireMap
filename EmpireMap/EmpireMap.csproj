@@ -494,6 +494,7 @@
     <Content Include="Views\Troups\Index.cshtml" />
     <Content Include="Views\Troups\_TroupData.cshtml" />
     <Content Include="Views\Troups\Edit.cshtml" />
+    <Content Include="Views\Troups\TroupList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
