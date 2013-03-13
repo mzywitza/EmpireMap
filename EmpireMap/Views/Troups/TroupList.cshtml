@@ -12,9 +12,7 @@
                     <th>Welt</th>
                     <th>Spieler</th>
                     <th>Deff</th>
-                    <th>S. Deff</th>
                     <th>Off</th>
-                    <th>S. Off</th>
                     <th>Stand</th>
                 </tr>
             </thead>
@@ -24,10 +22,8 @@
                     <tr>
                     <td>@c.Map.Name</td>
                     <td>@c.Player.Name</td>
-                    <td>@c.Deff</td>
-                    <td>@c.EnhancedDeff</td>
-                    <td>@c.Off</td>
-                    <td>@c.EnhancedOff</td>
+                    <td>@c.Deff<br />@c.EnhancedDeff</td>
+                    <td>@c.Off<br />@c.EnhancedOff</td>
                     <td>@c.LastUpdated</td>
                     </tr>
                 }
@@ -51,10 +47,8 @@
             "aoColumns": [
                   null,
                   null,
-                  { "sSortDataType": "dom-text", "sType": "numeric" },
-                  { "sSortDataType": "dom-text", "sType": "numeric" },
-                  { "sSortDataType": "dom-text", "sType": "numeric" },
-                  { "sSortDataType": "dom-text", "sType": "numeric" },
+                  { "bSortable": false },
+                  { "bSortable": false },
                   { "sSortDataType": "dom-text", "sType": "date" }
 
             ]
