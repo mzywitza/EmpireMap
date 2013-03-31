@@ -6,7 +6,7 @@
 <div id="mapselector">
     @foreach (var map in Model.Maps)
     {
-        @Html.ActionLink(map.Name, "Index",new {id=map.MapId})
+        @Html.ActionLink(map.Name, "Index", new { id = map.MapId })
     }
 </div>
 <h2 id="kartenname">Karte @Model.MapName</h2>
@@ -16,11 +16,13 @@
         <li><a href="#grid">Tabelle</a></li>
     </ul>
     <div id="map">
-        <div id="mapinfo" style="width: 90%;text-align: center;">Keine Burg ausgewählt...</div>
-        <div id="mapcontainer" style="width:90%;min-height:600px;height:100%;"></div>
+        <div id="mapinfo" style="width: 90%; text-align: center;">Keine Burg ausgewählt...</div>
+        <div id="mapcontainer" style="width: 90%; min-height: 600px; height: 100%;"></div>
     </div>
     <div id="grid">
-        <div id="selectedCastle"><h5>Klicke auf eine Zeile um die Entfernung zu berechnen...</h5></div>
+        <div id="selectedCastle">
+            <h5>Klicke auf eine Zeile um die Entfernung zu berechnen...</h5>
+        </div>
         <table id="gtable">
             <thead>
                 <tr>
@@ -29,6 +31,7 @@
                     <th>X</th>
                     <th>Y</th>
                     <th>AP</th>
+                    <th>Lager</th>
                     <th>Entfernung</th>
                 </tr>
             </thead>
@@ -36,11 +39,12 @@
                 @foreach (var c in Model.Castles)
                 {
                     <tr>
-                    <td>@c.Player.Name</td>
-                    <td>@c.Name</td>
-                    <td>@c.X</td>
-                    <td>@c.Y</td>
-                    <td>@(c.IsAp ? "AP" : "HB")</td>
+                        <td>@c.Player.Name</td>
+                        <td>@c.Name</td>
+                        <td>@c.X</td>
+                        <td>@c.Y</td>
+                        <td>@(c.IsAp ? "AP" : "HB")</td>
+                        <td>@c.Storage</td>
                         <td class="distance"></td>
                     </tr>
                 }
@@ -68,10 +72,10 @@
             $("#gtable tbody tr").each(function (i, elmt) {
                 var x = $(this).children("td:nth-child(3)").text();
                 var y = $(this).children("td:nth-child(4)").text();
-                
+
                 var dist = Math.ceil(Math.sqrt((cx - x) * (cx - x) + (cy - y) * (cy - y)));
                 var pos = oTable.fnGetPosition(this);
-                oTable.fnUpdate(dist, pos, 5);
+                oTable.fnUpdate(dist, pos, 6);
             });
         });
 
@@ -81,7 +85,7 @@
             "bLengthChange": true,
             "bFilter": true,
             "bInfo": false,
-            oLanguage : {
+            oLanguage: {
                 sSearch: "Suche:"
             },
             "aoColumns": [
@@ -90,6 +94,7 @@
                   { "sSortDataType": "dom-text", "sType": "numeric" },
                   { "sSortDataType": "dom-text", "sType": "numeric" },
                   null,
+                  { "sSortDataType": "dom-text", "sType": "numeric" },
                   { "sSortDataType": "dom-text", "sType": "numeric" }
             ]
         });
@@ -104,7 +109,7 @@
             var x = parseInt($(element).children("td:nth-child(3)").text());
             var y = parseInt($(element).children("td:nth-child(4)").text());
             var ap = $(element).children("td:nth-child(5)").text();
-            
+
             data.push({
                 caption: player + " (" + ap + ":" + castle + ")",
                 x: x, y: y, ap: (ap === "AP"),
@@ -119,8 +124,8 @@
             ymax: d3.max(data, function (e) { return e.y; }) + 5,
             ymin: d3.min(data, function (e) { return e.y; }) - 5,
             title: $("#kartenname").text(),
-            mouseover: function (point) {$("#mapinfo").text(point.caption+" ["+point.x+"/"+point.y+"]");},
-            mouseout: function (point) {$("#mapinfo").text(hoverDefault);}
+            mouseover: function (point) { $("#mapinfo").text(point.caption + " [" + point.x + "/" + point.y + "]"); },
+            mouseout: function (point) { $("#mapinfo").text(hoverDefault); }
         }, data);
 
         //var minX = d3.min(data, function (e) { return e.x; })-5,
@@ -150,6 +155,6 @@
         //    .attr("dy", -4)
         //    .attr("dx", -6)
         //    .text(function (d) { return d.caption; });
-        
-     });
+
+    });
 </script>

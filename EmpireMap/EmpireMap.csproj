@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201303101829342_TroupsChanged.Designer.cs">
       <DependentUpon>201303101829342_TroupsChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303311638278_CastleStorage.cs" />
+    <Compile Include="Migrations\201303311638278_CastleStorage.Designer.cs">
+      <DependentUpon>201303311638278_CastleStorage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AllianceStatus.cs" />
@@ -515,6 +519,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303101829342_TroupsChanged.resx">
       <DependentUpon>201303101829342_TroupsChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303311638278_CastleStorage.resx">
+      <DependentUpon>201303311638278_CastleStorage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

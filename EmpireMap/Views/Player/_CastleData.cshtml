@@ -10,6 +10,7 @@
                     <th>X</th>
                     <th>Y</th>
                     <th>AP</th>
+                    <th>Lager</th>
                     <th>Karte</th>
                     <th></th>
                 </tr>
@@ -23,6 +24,7 @@
                         <td>@castle.Y</td>
                         <td>@if (castle.IsAp)
                             {<text>Ja</text>}</td>
+                        <td>@castle.Storage</td>
                         <td>@castle.Map.Name</td>
                         <td>
                             @Html.ActionLink("Bearbeiten", "EditCastle", new { Id = castle.CastleId }, new { @class = "castle-edit" })

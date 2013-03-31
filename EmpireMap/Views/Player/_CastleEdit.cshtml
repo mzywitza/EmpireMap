@@ -42,6 +42,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Storage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Storage)
+            @Html.ValidationMessageFor(model => model.Storage)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.MapId)
         </div>
         <div class="editor-field">

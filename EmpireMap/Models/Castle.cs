@@ -23,5 +23,8 @@ namespace EmpireMap.Models
         public Map Map { get; set; }
         public int PlayerId { get; set; }
         public Player Player { get; set; }
+
+        [Display(Name="Lagergröße")]
+        public int Storage { get; set; }
     }
 }
