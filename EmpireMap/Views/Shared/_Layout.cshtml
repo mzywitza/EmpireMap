@@ -30,7 +30,6 @@
                         @if (User.IsInRole("Benutzer"))
                         {
                             <li>@Html.ActionLink("Karten", "Index", "Application")</li>
-                            <li>@Html.ActionLink("Truppen", "Index", "Troups")</li>
                         }
                         else
                         {
@@ -38,12 +37,13 @@
                         }
                         @if (Request.IsAuthenticated)
                         {
-                            <li>@Html.ActionLink("Verwaltung", "Index", "Player")</li>
+                            <li>@Html.ActionLink("Truppen/Ress", "Index", "Troups")</li>
+                            <li>@Html.ActionLink("Burgen", "Index", "Player")</li>
                         }
                         @if (User.IsInRole("Administrator") || User.IsInRole("Führung"))
                         {
+                            <li>@Html.ActionLink("Spielerdaten", "TroupList","Troups")</li>
                             <li>@Html.Action("Link", "UserAdmin")</li>
-                            <li>@Html.ActionLink("Truppenliste", "TroupList","Troups")</li>
                         }
                         <li>@Html.ActionLink("Info", "About", "Home")</li>
                         <li>@Html.ActionLink("Impressum", "Contact", "Home")</li>
