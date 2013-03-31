@@ -13,6 +13,7 @@
                     <th>Spieler</th>
                     <th>Deff</th>
                     <th>Off</th>
+                    <th>Ress</th>
                     <th>Stand</th>
                 </tr>
             </thead>
@@ -24,6 +25,10 @@
                     <td>@c.Player.Name</td>
                     <td>@c.Deff<br />@c.EnhancedDeff</td>
                     <td>@c.Off<br />@c.EnhancedOff</td>
+                    <td>
+                        <span class="@(c.Wood == 1 ? "green" : c.Wood == -1 ? "red" : "neutral")">Holz</span><br />
+                        <span class="@(c.Stone == 1 ? "green" : c.Stone == -1 ? "red" : "neutral")">Stein</span>
+                    </td>
                     <td>@c.LastUpdated</td>
                     </tr>
                 }
@@ -47,6 +52,7 @@
             "aoColumns": [
                   null,
                   null,
+                  { "bSortable": false },
                   { "bSortable": false },
                   { "bSortable": false },
                   { "sSortDataType": "dom-text", "sType": "date" }

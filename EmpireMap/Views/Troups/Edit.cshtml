@@ -49,6 +49,24 @@
             @Html.ValidationMessageFor(model => model.EnhancedOff)
         </div>
 
+        <div class="editor-label">
+            Holz
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model=>model.Wood, -1) Benötige Unterstützung <br /> 
+            @Html.RadioButtonFor(model=>model.Wood, 0) Habe genug für ich selbst <br />
+            @Html.RadioButtonFor(model=>model.Wood, 1) Kann ich abgeben 
+        </div>
+
+        <div class="editor-label">
+            Stein
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model=>model.Stone, -1) Benötige Unterstützung <br /> 
+            @Html.RadioButtonFor(model=>model.Stone, 0) Habe genug für ich selbst <br />
+            @Html.RadioButtonFor(model=>model.Stone, 1) Kann ich abgeben 
+        </div>
+
         <p>
             <input type="submit" value="Speichern" />
         </p>

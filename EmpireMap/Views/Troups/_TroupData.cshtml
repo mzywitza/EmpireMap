@@ -8,13 +8,14 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <th colspan="5">@item.Map.Name <span style="float:right;">Stand: @item.LastUpdated</span></th>
+                    <th colspan="6">@item.Map.Name <span style="float:right;">Stand: @item.LastUpdated</span></th>
                 </tr>
                 <tr>
                     <td>Leichte Deffer</td>
                     <td>@item.Deff</td>
                     <td>Leichte Offer</td>
                     <td>@item.Off</td>
+                    <td>@(item.Wood == 1 ? "Holzüberschuss" : item.Wood == -1 ? "Holzmangel" : "")</td>
                     <td rowspan="2" style="vertical-align:middle;">@Html.ActionLink("Bearbeiten", "Edit", new { Id = item.TroupId }, new { @class = "troup-edit" })</td>
                 </tr>
                 <tr>
@@ -22,6 +23,7 @@
                     <td>@item.EnhancedDeff</td>
                     <td>Schwere Offer</td>
                     <td>@item.EnhancedOff</td>
+                    <td>@(item.Stone == 1 ? "Steinüberschuss" : item.Stone == -1 ? "Steinmangel" : "")</td>
                 </tr>
            
             }

@@ -36,6 +36,17 @@ namespace EmpireMap.Models
         [Display(Name = "Schwere Angreifer")]
         public int EnhancedOff { get; set; }
 
+        [Required]
+        [Range(-1, 1)]
+        [Display(Name = "Holz")]
+        public int Wood { get; set; }
+
+        [Required]
+        [Range(-1, 1)]
+        [Display(Name = "Stein")]
+        public int Stone { get; set; }
+
+
         public DateTime LastUpdated { get; set; }
     }
 }
