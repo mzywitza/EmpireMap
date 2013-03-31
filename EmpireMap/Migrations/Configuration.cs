@@ -75,10 +75,10 @@ namespace EmpireMap.Migrations
             var ice = context.Maps.Where(m => m.Name == "Eis").Single();
             var monk = context.Players.Where(p => p.Name == "InfamousMonk").Single();
             context.Castles.AddOrUpdate(c => c.Name,
-                new Castle { Name = "Keilerbau", X = 733, Y = 732, PlayerId = monk.PlayerId, MapId = green.MapId },
-                new Castle { Name = "Frischlingswald", X = 729, Y = 729, IsAp = true, PlayerId = monk.PlayerId, MapId = green.MapId },
-                new Castle { Name = "Specks Versteck", X = 730, Y = 736, IsAp = true, PlayerId = monk.PlayerId, MapId = green.MapId },
-                new Castle { Name = "Eisbeinhöhle", X = 413, Y = 1028, IsAp = true, PlayerId = monk.PlayerId, MapId = ice.MapId });
+                new Castle { Name = "Keilerbau", X = 733, Y = 732, Storage = 41000, PlayerId = monk.PlayerId, MapId = green.MapId },
+                new Castle { Name = "Frischlingswald", X = 729, Y = 729, Storage = 24000, IsAp = true, PlayerId = monk.PlayerId, MapId = green.MapId },
+                new Castle { Name = "Specks Versteck", X = 730, Y = 736, Storage = 24000, IsAp = true, PlayerId = monk.PlayerId, MapId = green.MapId },
+                new Castle { Name = "Eisbeinhöhle", X = 413, Y = 1028, Storage = 13500, IsAp = true, PlayerId = monk.PlayerId, MapId = ice.MapId });
             context.SaveChanges();
         }
     }
