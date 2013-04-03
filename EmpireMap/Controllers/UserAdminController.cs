@@ -115,6 +115,16 @@ namespace EmpireMap.Controllers
         }
 
         [HttpPost]
+        public ActionResult ResetPassword(int id, string password)
+        {
+            var userName = ctx.UserProfiles.Find(id).UserName;
+            var token = WebSecurity.GeneratePasswordResetToken(userName);
+            WebSecurity.ResetPassword(token, password);
+            TempData["message"] = "Passwort wurde zurückgesetzt";
+            return RedirectToAction("EditUser",new {id});
+        }
+
+        [HttpPost]
         public ActionResult DeleteUser(int id)
         {
             var user = ctx.UserProfiles.Find(id);

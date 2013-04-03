@@ -22,3 +22,11 @@
 {
     <input type="submit" value="Benutzer löschen" />
 }
+
+<h2>Passwort ändern</h2>
+<div>@TempData["message"]</div>
+@using (Html.BeginForm("ResetPassword", "UserAdmin", new { id = Model.UserId }))
+{
+    <div class="input-field"><input type="text" name="password" /></div>
+    <input type="submit" value="Ändern" />
+}
